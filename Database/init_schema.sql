@@ -41,6 +41,14 @@ CREATE TABLE OrderItems (
 );
 GO
 
+CREATE TABLE CartItems (
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+	UserId INT FOREIGN KEY REFERENCES Users(Id),
+	ProductId INT FOREIGN KEY REFERENCES Products(Id),
+	Quantity INT NOT NULL,
+	CreatedAt DATETIME DEFAULT GETDATE()
+);
+
 INSERT INTO Products ([Name], [Description], Price, ImageUrl)
 VALUES
 ('Blue Top', 'Comfortable blue top.', 15.99, 'https://placehold.co/150?text=Blue+Top'),
