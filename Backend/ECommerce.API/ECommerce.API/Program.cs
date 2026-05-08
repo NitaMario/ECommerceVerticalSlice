@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Application services
 var assembly = typeof(Program).Assembly;
+builder.Services.AddCarter();
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(assembly));
 
@@ -16,6 +17,7 @@ builder.Services.AddCors(options =>
         .AllowAnyMethod()
         .AllowAnyHeader());
 });
+builder.Services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>();
 
 // Web API services
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +26,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.MapCarter();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
