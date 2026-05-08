@@ -31,6 +31,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    var secret = app.Configuration["Jwt:Secret"];
+    if (string.IsNullOrEmpty(secret) || secret == "SuperSecretKeyForEcommerceSliceAppPracticalExercise!@#!")
+    {
+        Console.WriteLine("SECURITY NOTE: Using a hardcoded JWT Secret for convenince of testing.");
+        Console.WriteLine("In production, this would be managed via Environment Variables.");
+    }
 }
 
 app.UseHttpsRedirection();
