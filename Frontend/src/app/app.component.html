@@ -10,10 +10,15 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart">Cart (0)</a>
+          <a class="nav-link" routerLink="/cart"
+            >Cart ({{ cartService.totalItems() }})</a
+          >
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register">Register</a>
         </li>
       </ul>
     </div>
