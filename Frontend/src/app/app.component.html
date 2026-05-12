@@ -16,6 +16,11 @@
         </li>
         @if (authService.isLoggedIn()) {
           <li class="nav-item">
+            <a class="nav-link text-info fw-bold" routerLink="/orders"
+              >Order History</a
+            >
+          </li>
+          <li class="nav-item">
             <a
               class="nav-link text-danger fw-bold"
               style="cursor: pointer"

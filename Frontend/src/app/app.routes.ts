@@ -4,6 +4,7 @@ import { CartComponent } from './features/cart/cart/cart.component';
 import { CheckoutComponent } from './features/checkout/checkout/checkout.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { OrderHistoryComponent } from './features/checkout/order-history/order-history.component';
 
 export const routes: Routes = [
   { path: '', component: ProductListComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'orders', component: OrderHistoryComponent },
   { path: '**', redirectTo: '' },
 ];

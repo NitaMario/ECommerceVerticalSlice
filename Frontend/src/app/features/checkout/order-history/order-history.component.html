@@ -1,0 +1,57 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary fw-bold">Order History</h2>
+
+  @if (isLoading()) {
+    <div class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+  } @else if (orders().length === 0) {
+    <div class="alert alert-info shadow-sm">
+      No orders yet.
+      <a routerLink="/" class="alert-link">Order products here!</a>
+    </div>
+  } @else {
+    @for (order of orders(); track order.orderId) {
+      <div class="card shadow-sm mb-4 border-0">
+        <div
+          class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3"
+        >
+          <div>
+            <h5 class="mb-0">Order #{{ order.orderId }}</h5>
+            <small class="text-light">{{
+              order.orderDate | date: "longDate"
+            }}</small>
+          </div>
+          <h5 class="mb-0 text-success fw-bold">
+            {{ order.totalAmount | currency: "USD" }}
+          </h5>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3">
+            <strong>Shipped to:</strong> {{ order.shippingAddress }}
+          </p>
+
+          <ul class="list-group list-group-flush border-top pt-2">
+            @for (item of order.items; track item.productId) {
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center px-0"
+              >
+                <div>
+                  <span class="fw-bold">{{ item.productName }}</span>
+                  <span class="text-muted ms-2">{{ item.quantity }}</span>
+                </div>
+                <span class="text-muted">{{
+                  item.unitPrice * item.quantity | currency: "USD"
+                }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  }
+</div>
