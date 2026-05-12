@@ -1,1 +1,36 @@
-<p>product-list works!</p>
+<div class="container mt-4">
+  <h2 class="mb-4 text-primary">Products</h2>
+
+  <div class="row g-4">
+    @for (product of products(); track product.id) {
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <img
+            [src]="product.imageUrl"
+            class="card-img-top"
+            [alt]="product.name"
+            style="height: 200px; object-fit: cover"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text text-muted flex-grow-1">
+              {{ product.description }}
+            </p>
+            <h4 class="text-success mb-3">${{ product.price }}</h4>
+            <button
+              class="btn btn-primary w-100 mt-auto"
+              (click)="onAddToCart(product)"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12 text-center py-5">
+        <div class="spinner-border text-primary mb-3" role="status"></div>
+        <h4>Loading products...</h4>
+      </div>
+    }
+  </div>
+</div>
