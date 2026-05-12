@@ -14,12 +14,23 @@
             >Cart ({{ cartService.totalItems() }})</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/register">Register</a>
-        </li>
+        @if (authService.isLoggedIn()) {
+          <li class="nav-item">
+            <a
+              class="nav-link text-danger fw-bold"
+              style="cursor: pointer"
+              (click)="authService.logout()"
+              >Logout</a
+            >
+          </li>
+        } @else {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/register">Register</a>
+          </li>
+        }
       </ul>
     </div>
   </div>

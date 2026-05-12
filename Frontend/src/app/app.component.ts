@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { CartService } from './features/cart/cart.service';
+import { AuthService } from './features/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,5 @@ import { CartService } from './features/cart/cart.service';
 })
 export class AppComponent {
   public cartService = inject(CartService);
+  public authService = inject(AuthService);
 }
