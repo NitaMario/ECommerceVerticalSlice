@@ -34,9 +34,7 @@ export class CartService {
 
       if (existingItem) {
         return currentItems.map((i) =>
-          i.productId === product.productId
-            ? { ...i, quantity: i.quantity + 1 }
-            : i,
+          i.productId === product.id ? { ...i, quantity: i.quantity + 1 } : i,
         );
       } else {
         const newItem: CartItem = {
@@ -48,6 +46,25 @@ export class CartService {
         return [...currentItems, newItem];
       }
     });
+  }
+
+  public updateQuantity(productId: number, newQuantity: number) {
+    if (newQuantity <= 0) {
+      this.removeFromCart(productId);
+      return;
+    }
+
+    this.cartItems.update((items) =>
+      items.map((i) =>
+        i.productId === productId ? { ...i, quantity: newQuantity } : i,
+      ),
+    );
+  }
+
+  public removeFromCart(productId: number) {
+    this.cartItems.update((items) =>
+      items.filter((i) => i.productId !== productId),
+    );
   }
 
   public clearCart() {
