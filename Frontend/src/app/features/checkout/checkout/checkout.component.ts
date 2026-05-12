@@ -18,7 +18,6 @@ export class CheckoutComponent {
   private router = inject(Router);
 
   public shippingDetails = {
-    fullName: '',
     address: '',
   };
 
@@ -28,12 +27,7 @@ export class CheckoutComponent {
     this.isSubmitting = true;
 
     const orderPayload = {
-      fullName: this.shippingDetails.fullName,
       shippingAddress: this.shippingDetails.address,
-      items: this.cartService.getCart().map((item) => ({
-        productId: item.productId,
-        quantity: item.quantity,
-      })),
     };
 
     this.http

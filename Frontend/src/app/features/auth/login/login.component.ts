@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { AuthService } from '../auth.service';
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private cartService = inject(CartService);
 
   public credentials = {
     email: '',
@@ -28,6 +30,7 @@ export class LoginComponent {
 
     this.authService.login(this.credentials).subscribe({
       next: () => {
+        this.cartService.loadCart();
         this.router.navigate(['/']);
       },
       error: (err) => {
