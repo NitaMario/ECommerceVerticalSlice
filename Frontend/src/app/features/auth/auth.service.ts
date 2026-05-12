@@ -23,6 +23,13 @@ export class AuthService {
       );
   }
 
+  public register(data: { name: string; email: string; password: string }) {
+    return this.http.post<any>(
+      'https://localhost:7119/api/identity/register',
+      data,
+    );
+  }
+
   public logout() {
     sessionStorage.removeItem('jwt_token');
     this.isLoggedIn.set(false);
