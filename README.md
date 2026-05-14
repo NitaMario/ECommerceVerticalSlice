@@ -20,6 +20,17 @@ Follow these instructions to get a copy of the project running on your local mac
 *   [Node.js](https://nodejs.org/)
 *   [Angular CLI](https://angular.io/cli) (`npm install -g @angular/cli`)
 
+### 0. Clone the Repository
+Before starting, download the code to your local machine:
+1. Open your terminal and clone the repository:
+   ```bash
+   git clone https://github.com/NitaMario/ECommerceVerticalSlice.git
+   ```
+2. Navigate into the newly created project folder:
+   ```bash
+   cd ECommerceVerticalSlice
+   ```
+
 ### 1. Database Setup
 1. Open SQL Server Management Studio (SSMS).
 2. Right-click the **Databases** node and select **Restore Database...**
@@ -29,18 +40,19 @@ Follow these instructions to get a copy of the project running on your local mac
 ### 2. Backend Setup (.NET Web API)
 1. Open a terminal and navigate to the backend folder:
    ```bash
-   cd Backend/ECommerce.API
+   cd Backend/ECommerce.API/ECommerce.API
    ```
-2. Open the **appsettings.json** file and update the **DefaultConnection** string to point to your local SQL Server instance:
+2. Open the project in your preferred IDE or code editor.
+3. Open the **appsettings.json** file and update the **DefaultConnection** string to point to your local SQL Server instance:
    ```json
    "ConnectionStrings": {
      "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=ECommerceSliceDB;Trusted_Connection=True;TrustServerCertificate=True;"
    }
    ```
-3. Restore the NuGet packages and run the API:
+4. Restore the NuGet packages and run the API:
    ```bash
    dotnet restore
-   dotnet run
+   dotnet run --launch-profile "https"
    ```
 
 *The API will start on `https://localhost:7119`. Leave this terminal open.*
